@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import Form from "@components/Form";
 
 const CreatePrompt = () => {
-  const { data: session } = useSession();
   const router = useRouter();
+  const { data: session } = useSession();
 
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
@@ -21,6 +21,12 @@ const CreatePrompt = () => {
     setSubmitting(true);
 
     try {
+      console.log("Payload being sent:", {
+        prompt: post.prompt,
+        userId: session?.user.id,
+        tag: post.tag,
+      });
+
       const response = await fetch("/api/prompt/new", {
         method: "POST",
         body: JSON.stringify({
