@@ -109,7 +109,7 @@ const Nav = () => {
 
                 <button
                   type="button"
-                  onClicl={() => {
+                  onClick={() => {
                     setToggleDropDown(false);
                     signOut();
                   }}
