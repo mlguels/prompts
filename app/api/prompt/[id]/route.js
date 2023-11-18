@@ -39,3 +39,15 @@ export const PATCH = async (request, { params }) => {
     return new Response("Failed to update Prompt", { status: 500 });
   }
 };
+
+export const DELETE = async (request, { params }) => {
+  try {
+    await connectToDatabase();
+
+    await Prompt.findByIdAndDelete(params.id);
+
+    return new Response("Deleted Prompt", { status: 200 });
+  } catch (error) {
+    return new Response("Failed to delete Prompt", { status: 500 });
+  }
+};
